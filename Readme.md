@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Наталья Арсентьева](https://up.htmlacademy.ru/javascript/24/user/1535249).
-* Наставник: `Руслан Бреев`.
+* Наставник: [Руслан Бреев](https://htmlacademy.ru/profile/blckwltz).
 
 ---
 
