@@ -1,18 +1,17 @@
-const randomInteger = function(min, max) {
+const getRandomNumber = function(min, max) {
+  min = Math.abs(min);
+  max = Math.abs(max);
+
   if (max - min < 0) {
-    const swap = min;
-    min = max;
-    max = swap;
+    [min, max] = [max, min];
   }
+
   const rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 };
 
-const maxLength = function(str, maxlength) {
-  return (str.length <= maxlength);
-};
+const checkStringLength = (str, maxlength) => (str.length <= maxlength);
 
-randomInteger(1, 5);
+getRandomNumber(1, 5);
 
-maxLength('Длина не самого длинного комментария', 10);
-
+checkStringLength('Длина не самого длинного комментария', 10);
