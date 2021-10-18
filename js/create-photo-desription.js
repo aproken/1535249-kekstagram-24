@@ -1,11 +1,13 @@
 import { createCommetsList } from './create-comment.js';
 import { getRandomNumber } from './utils.js';
 
+const rangeQuantityLikes = [15, 200];
+
 // Создание объекта описания фотографии
-const createPhotoDescription = function (photoId) {
+const createPhotoDescription = (photoId) => {
   const photoUrl = `photos/${photoId}.jpg`;
   const photoDescription = 'Натуральный детокс организма обеспечен вам только от одного просмотра';
-  const photoLikes = getRandomNumber(15, 200);
+  const photoLikes = getRandomNumber(...rangeQuantityLikes);
   const photoComments = createCommetsList();
 
   return {

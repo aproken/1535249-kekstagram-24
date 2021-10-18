@@ -1,5 +1,5 @@
 //Функция генерации случайного положительного числа в заданном диапазоне
-const getRandomNumber = function(rangeFrom, rangeTo) {
+const getRandomNumber = (rangeFrom, rangeTo) => {
   rangeFrom = Math.abs(rangeFrom);
   rangeTo = Math.abs(rangeTo);
 
@@ -12,10 +12,9 @@ const getRandomNumber = function(rangeFrom, rangeTo) {
 };
 
 //Функция создания массива от rangeFrom и до rangeTo
-const getArray = function (rangeFrom, rangeTo) {
+const getArray = (rangeFrom, rangeTo) => {
   return (new Array(rangeTo - rangeFrom + 1))
     .fill(undefined)
-    .map((item, index) => index + rangeFrom);
 };
 
 //Функция проверки длины комментария

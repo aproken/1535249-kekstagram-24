@@ -21,9 +21,11 @@ const dataMessage = [
 const existsIds = [];
 
 const defaultRangeTo = 9999999;
+const quantityUsers = 6;
+const rangeQuantityComment = [3, 12];
 
 //Функция генерации уникального id
-const getUniqueId = function(rangeTo = defaultRangeTo) {
+const getUniqueId = (rangeTo = defaultRangeTo) => {
   let newId = getRandomNumber(0, rangeTo);
 
   while (existsIds.includes(newId)){
@@ -35,12 +37,12 @@ const getUniqueId = function(rangeTo = defaultRangeTo) {
 };
 
 //Функция для создания случайного комментария 
-const createComment = function() {
+const createComment = () => {
   const commentId = getUniqueId();
-  const userId = getRandomNumber(1, 6);
+  const userId = getRandomNumber(1, quantityUsers);
   const avatar = `img/avatar-${userId}.svg`;
   const userName = dataUsername[userId - 1];
-  const userMessage = dataMessage[getRandomNumber(0, 5)];
+  const userMessage = dataMessage[getRandomNumber(0, quantityUsers - 1)];
 
   return {
     id: commentId,
@@ -51,8 +53,8 @@ const createComment = function() {
 };
 
 // Создание списка случайных коментариев
-const createCommetsList = function () {
-  const quantity = getRandomNumber(3, 12);
+const createCommetsList = () => {
+  const quantity = getRandomNumber(...rangeQuantityComment);
   const commetsList = [];
 
   for (let index = 0; index <= quantity; index++) {
