@@ -12,10 +12,7 @@ const getRandomNumber = (rangeFrom, rangeTo) => {
 };
 
 //Функция создания массива от rangeFrom и до rangeTo
-const getArray = (rangeFrom, rangeTo) => {
-  return (new Array(rangeTo - rangeFrom + 1))
-    .fill(undefined)
-};
+const getArray = (rangeFrom, rangeTo) => (new Array(rangeTo - rangeFrom + 1)).fill(undefined);
 
 //Функция проверки длины комментария
 const checkStringLength = ( str, maxlength ) => ( str.length <= maxlength );

@@ -36,7 +36,7 @@ const getUniqueId = (rangeTo = defaultRangeTo) => {
   return newId;
 };
 
-//Функция для создания случайного комментария 
+//Функция для создания случайного комментария
 const createComment = () => {
   const commentId = getUniqueId();
   const userId = getRandomNumber(1, quantityUsers);
