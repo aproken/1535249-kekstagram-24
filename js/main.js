@@ -2,9 +2,12 @@ import {
   createPhotoDescriptions
 } from './data.js';
 import {
-  renderTrumbnailElements
+  renderThumbnailElements,
+  reactThumbnailClick
 } from './thumbnails.js';
 
 
 const photoDescriptions = createPhotoDescriptions();
-renderTrumbnailElements(photoDescriptions);
+console.log(photoDescriptions);
+renderThumbnailElements(photoDescriptions);
+reactThumbnailClick(photoDescriptions);

@@ -35,8 +35,17 @@ const createRandomIdFromRange = (rangeFrom, rangeTo) => {
 //Функция проверки длины комментария
 const checkStringLength = ( str, maxlength ) => ( str.length <= maxlength );
 
+// Функция-проверка нажатой клавиши
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+// // Функция выдачи индекса массива по ключу 'id'
+// const getIndex = (elements, key) => {
+//   elements.findIndex(item => item['key'] === )
+// }
+
 export {
   getRandomNumber,
   createRandomIdFromRange,
-  checkStringLength
+  checkStringLength,
+  isEscapeKey
 };

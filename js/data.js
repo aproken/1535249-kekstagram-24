@@ -53,7 +53,7 @@ const PHOTO_DESCRIPTIONS = [
 const PHOTO_COUNT = 25;
 const USER_COUNT = 6;
 const MAX_ID_COUNT = 99999;
-const COMMENTS_COUNT = [3, 12];
+const COMMENTS_COUNT = [5, 12];
 const LIKES_COUNT = [15, 200];
 
 const commentId = createRandomIdFromRange(1, MAX_ID_COUNT);
@@ -74,15 +74,15 @@ const createСommentItem = () => {
 };
 
 // Функция-генератор массива объектов — списка комментариев, оставленных другими пользователями к этой фотографии
-const createCommentsList = () => {
+const createComments = () => {
   const quantity = getRandomNumber(...COMMENTS_COUNT);
-  const commentsList = [];
+  const comments = [];
 
   for (let item = 0; item < quantity; item++) {
-    commentsList.push(createСommentItem());
+    comments.push(createСommentItem());
   }
 
-  return commentsList;
+  return comments;
 };
 
 const photoDescriptionId = createRandomIdFromRange(1, PHOTO_COUNT);
@@ -93,7 +93,7 @@ const createPhotoDescriptionItem = () => {
   const url = `photos/${id}.jpg`;
   const description = PHOTO_DESCRIPTIONS[id - 1];
   const likes = getRandomNumber(...LIKES_COUNT);
-  const comments = createCommentsList();
+  const comments = createComments();
 
   return {
     id: id,
@@ -118,4 +118,3 @@ const createPhotoDescriptions = () => {
 export {
   createPhotoDescriptions
 };
-
