@@ -1,5 +1,4 @@
 // Этот модуль отвечает за отображение окна с полноразмерным изображением
-import {isEscapeKey} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img');
@@ -9,7 +8,6 @@ const socialCaption = bigPicture.querySelector('.social__caption');
 const socialComments = bigPicture.querySelector('.social__comments');
 const socialCommentCount  = bigPicture.querySelector('.social__comment-count');
 const commentsLoader  = bigPicture.querySelector('.comments-loader');
-const pictureCancel  = bigPicture.querySelector('#picture-cancel');
 
 // Функция показа окна с полноразмерным изображением
 const showBigPictire = (element) => {
@@ -49,29 +47,8 @@ const showBigPictire = (element) => {
   document.querySelector('body').classList.add('modal-open');
 };
 
-const onBigPictireClick = () => {
-  const handlerOnEscape = (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      bigPicture.classList.add('hidden');
-      document.querySelector('body').classList.remove('modal-open');
-      document.removeEventListener('keydown', handlerOnEscape);
-    }
-  };
-
-  const handlerOnCancel = () => {
-    bigPicture.classList.add('hidden');
-    document.querySelector('body').classList.remove('modal-open');
-    pictureCancel.removeEventListener('click', handlerOnCancel);
-  };
-
-  document.addEventListener('keydown', handlerOnEscape);
-  pictureCancel.addEventListener('click', handlerOnCancel);
-};
-
 export {
-  showBigPictire,
-  onBigPictireClick
+  showBigPictire
 };
 
 

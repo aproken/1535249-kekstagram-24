@@ -5,9 +5,12 @@ import {
   renderThumbnailElements,
   reactThumbnailClick
 } from './thumbnails.js';
+import {
+  showImgUploadForm
+} from './form.js';
 
 
 const photoDescriptions = createPhotoDescriptions();
-console.log(photoDescriptions);
 renderThumbnailElements(photoDescriptions);
 reactThumbnailClick(photoDescriptions);
+showImgUploadForm();
