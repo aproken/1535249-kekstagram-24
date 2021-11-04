@@ -17,10 +17,10 @@ const createThumbnailElement = (template, element) => {
   pictureImg.src = element['url'];
 
   const pictureComments = thumbnailElement.querySelector('.picture__comments');
-  pictureComments.textContent = element['likes'];
+  pictureComments.textContent = element['comments'].length;
 
   const pictureLikes = thumbnailElement.querySelector('.picture__likes');
-  pictureLikes.textContent = element['comments'].length;
+  pictureLikes.textContent = element['likes'];
 
   return thumbnailElement;
 };

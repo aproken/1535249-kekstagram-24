@@ -11,6 +11,7 @@ import {
 
 
 const photoDescriptions = createPhotoDescriptions();
+
 renderThumbnailElements(photoDescriptions);
 reactThumbnailClick(photoDescriptions);
 showImgUploadForm();
