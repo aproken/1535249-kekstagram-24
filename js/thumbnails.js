@@ -1,10 +1,12 @@
 // Этот модуль отвечает за отрисовку миниатюр
-import {
-  showBigPictire,
-  onBigPictireClick
-} from './full-photo.js';
+import { showBigPictire } from './full-photo.js';
+
+import { closeFormDeferred } from './util.js';
 
 const pictures = document.querySelector('.pictures');
+const bigPicture = document.querySelector('.big-picture');
+const pictureCancel  = bigPicture.querySelector('#picture-cancel');
+
 
 // Функция-генератор DOM-элемента, соответствующего одной фотографии, и заполния его данными
 const createThumbnailElement = (template, element) => {
@@ -15,10 +17,10 @@ const createThumbnailElement = (template, element) => {
   pictureImg.src = element['url'];
 
   const pictureComments = thumbnailElement.querySelector('.picture__comments');
-  pictureComments.textContent = element['likes'];
+  pictureComments.textContent = element['comments'].length;
 
   const pictureLikes = thumbnailElement.querySelector('.picture__likes');
-  pictureLikes.textContent = element['comments'].length;
+  pictureLikes.textContent = element['likes'];
 
   return thumbnailElement;
 };
@@ -46,7 +48,7 @@ const reactThumbnailClick = (elements) => {
       const pictureId = evt.target.closest('.picture').dataset.pictureId;
       const elementIndex = elements.findIndex((item) => item['id'] === Number(pictureId));
       showBigPictire(elements[elementIndex]);
-      onBigPictireClick();
+      closeFormDeferred(bigPicture, pictureCancel);
     }
   };
 
