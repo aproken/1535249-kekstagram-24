@@ -60,7 +60,7 @@ const Effects = {
 const imgUploadForm = document.querySelector('#upload-select-image');
 const uploadFile = imgUploadForm.querySelector('#upload-file');
 const imgUploadOverlay = imgUploadForm.querySelector('.img-upload__overlay');
-const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview');
+const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview img');
 const textHashtags = imgUploadForm.querySelector('.text__hashtags');
 const uploadCancel = imgUploadForm.querySelector('#upload-cancel');
 const scale = imgUploadForm.querySelector('.scale');
@@ -82,7 +82,7 @@ const showImgUploadForm = () => {
 
 const resetFileUpload = () => uploadFile.value = '';
 
-const transformImgScale = () => imgUploadPreview.children[0].style = `transform: scale(${parseInt(scaleControlValue.value, 10) / 100})`;
+const transformImgScale = () => imgUploadPreview.style = `transform: scale(${parseInt(scaleControlValue.value, 10) / 100})`;
 
 // Функция редактирования масштаба изображения
 const editImgScale = (evt) => {
@@ -165,13 +165,13 @@ const onEffectChange = (evt) => {
     const effectType = evt.target.value;
     if (effectType === 'none') {
       hideSlider();
-      imgUploadPreview.children[0].className = '';
+      imgUploadPreview.className = '';
     }
 
     if (effectType in Effects) {
       turnSlider(effectType);
-      imgUploadPreview.children[0].className = '';
-      imgUploadPreview.children[0].classList.add(Effects[effectType].className);
+      imgUploadPreview.className = '';
+      imgUploadPreview.classList.add(Effects[effectType].className);
     }
   }
 };
