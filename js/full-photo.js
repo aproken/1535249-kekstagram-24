@@ -50,9 +50,6 @@ const renderUserComments = (comments) => {
     socialCommentNewCount.textContent = `${countCommentFrom + commentsNextScreen.length} из ${comments.length}`;
     socialCommentCount.appendChild(socialCommentNewCount);
 
-
-    commentsCount.textContent = `${countCommentTo} из ${comments.length}`;
-
     if (comments.length === countCommentFrom + commentsNextScreen.length) {
       commentsLoader.classList.add('hidden');
     } else {
