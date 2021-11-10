@@ -1,7 +1,7 @@
 // Этот модуль отвечает за отрисовку миниатюр
 import { showBigPictire } from './full-photo.js';
 
-import { closeFormDeferred } from './util.js';
+import { closeFormDeferred } from './modal-close.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');

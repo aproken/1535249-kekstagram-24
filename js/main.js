@@ -1,17 +1,18 @@
-import {
-  createPhotoDescriptions
-} from './data.js';
+import { getData } from './api.js';
+
 import {
   renderThumbnailElements,
   reactThumbnailClick
 } from './thumbnails.js';
-import {
-  showImgUploadForm
-} from './form.js';
+
+import { showImgUploadForm } from './form.js';
 
 
-const photoDescriptions = createPhotoDescriptions();
+getData(
+  (photos) => {
+    renderThumbnailElements(photos),
+    reactThumbnailClick(photos),
+    showImgUploadForm();
+  },
+);
 
-renderThumbnailElements(photoDescriptions);
-reactThumbnailClick(photoDescriptions);
-showImgUploadForm();

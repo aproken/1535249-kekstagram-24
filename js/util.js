@@ -37,31 +37,6 @@ const checkStringLength = ( str, maxlength ) => ( str.length <= maxlength );
 // Функция-проверка нажатой клавиши
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-// Функция закрытия окна
-const closeFormDeferred = (form, buttonClose, afterCallback) => {
-  const handlerOnEscape = (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      form.classList.add('hidden');
-      document.querySelector('body').classList.remove('modal-open');
-      document.removeEventListener('keydown', handlerOnEscape);
-    }
-  };
-
-  const handlerOnCancel = () => {
-    form.classList.add('hidden');
-    document.querySelector('body').classList.remove('modal-open');
-    buttonClose.removeEventListener('click', handlerOnCancel);
-  };
-
-  document.addEventListener('keydown', handlerOnEscape);
-  buttonClose.addEventListener('click', handlerOnCancel);
-
-  if (afterCallback) {
-    afterCallback();
-  }
-};
-
 // Функция подсчета количества одного и того же элемента в массиве
 const getCounter = (array) => {
   const count = {};
@@ -72,12 +47,36 @@ const getCounter = (array) => {
 // Функция удаления дублей из массива
 const getUniqueArray = (array) => Array.from(new Set(array));
 
+const ALERT_SHOW_TIME = 5000;
+
+// Функция показывает сообщение с ошибкой на 5 секунд
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
 export {
   getRandomNumber,
   createRandomIdFromRange,
   checkStringLength,
   isEscapeKey,
-  closeFormDeferred,
   getCounter,
-  getUniqueArray
+  getUniqueArray,
+  showAlert
 };
