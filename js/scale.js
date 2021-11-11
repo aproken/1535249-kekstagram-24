@@ -14,7 +14,7 @@ const scaleControlValue = imgUploadForm.querySelector('.scale__control--value');
 const scaleValueShadow = imgUploadForm.querySelector('#scale_value');
 const scaleControlBigger = imgUploadForm.querySelector('.scale__control--bigger');
 
-const transformImgScale = () => imgUploadPreview.style = `transform: scale(${parseInt(scaleControlValue.value, 10) / 100})`;
+const transformImgScale = () => imgUploadPreview.style.transform = `scale(${parseInt(scaleControlValue.value, 10) / 100})`;
 
 // Функция редактирования масштаба изображения
 const editImgScale = (evt) => {
@@ -44,4 +44,13 @@ const editImgScale = (evt) => {
   }
 };
 
-scale.addEventListener('click', editImgScale);
+const init = () => {
+  scale.addEventListener('click', editImgScale);
+};
+
+const off = () => {
+  scale.removeEventListener('click', editImgScale);
+  imgUploadPreview.style.transform = '';
+};
+
+export { init, off };

@@ -1,4 +1,3 @@
-// Этот модуль отвечает за валидацию формы
 import {
   getCounter,
   getUniqueArray
@@ -73,6 +72,16 @@ const validateForm = (evt) => {
   textHashtags.reportValidity();
 };
 
-// Валидация формы редактирования
-imgUploadForm.addEventListener('input', validateForm);
+const init = () => {
+  // Валидация формы редактирования
+  imgUploadForm.addEventListener('input', validateForm);
+};
 
+const off = () => {
+  imgUploadForm.removeEventListener('input', validateForm);
+};
+
+export {
+  init,
+  off
+};
