@@ -37,31 +37,6 @@ const checkStringLength = ( str, maxlength ) => ( str.length <= maxlength );
 // Функция-проверка нажатой клавиши
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-// Функция закрытия окна
-const closeFormDeferred = (form, buttonClose, afterCallback) => {
-  const handlerOnEscape = (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      form.classList.add('hidden');
-      document.querySelector('body').classList.remove('modal-open');
-      document.removeEventListener('keydown', handlerOnEscape);
-    }
-  };
-
-  const handlerOnCancel = () => {
-    form.classList.add('hidden');
-    document.querySelector('body').classList.remove('modal-open');
-    buttonClose.removeEventListener('click', handlerOnCancel);
-  };
-
-  document.addEventListener('keydown', handlerOnEscape);
-  buttonClose.addEventListener('click', handlerOnCancel);
-
-  if (afterCallback) {
-    afterCallback();
-  }
-};
-
 // Функция подсчета количества одного и того же элемента в массиве
 const getCounter = (array) => {
   const count = {};
@@ -77,7 +52,6 @@ export {
   createRandomIdFromRange,
   checkStringLength,
   isEscapeKey,
-  closeFormDeferred,
   getCounter,
   getUniqueArray
 };

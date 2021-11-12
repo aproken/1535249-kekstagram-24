@@ -1,7 +1,6 @@
 // Этот модуль отвечает за отрисовку миниатюр
 import { showBigPictire } from './full-photo.js';
-
-import { closeFormDeferred } from './util.js';
+import { isEscapeKey } from './util.js';
 
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -41,6 +40,30 @@ const renderThumbnailElements = (elements) => {
   return pictures;
 };
 
+let onEscPress = null;
+let onCloseClick = null;
+
+onEscPress = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+
+    bigPicture.classList.add('hidden');
+    document.querySelector('body').classList.remove('modal-open');
+
+    pictureCancel.removeEventListener('click', onCloseClick);
+    document.removeEventListener('keydown', onEscPress);
+  }
+};
+
+onCloseClick = () => {
+  bigPicture.classList.add('hidden');
+  document.querySelector('body').classList.remove('modal-open');
+
+  pictureCancel.removeEventListener('click', onCloseClick);
+  document.removeEventListener('keydown', onEscPress);
+};
+
+
 // Функция обработки клика по миниатюре
 const reactThumbnailClick = (elements) => {
   const onThumbnailClick = (evt) => {
@@ -48,7 +71,9 @@ const reactThumbnailClick = (elements) => {
       const pictureId = evt.target.closest('.picture').dataset.pictureId;
       const elementIndex = elements.findIndex((item) => item['id'] === Number(pictureId));
       showBigPictire(elements[elementIndex]);
-      closeFormDeferred(bigPicture, pictureCancel);
+
+      pictureCancel.addEventListener('click', onCloseClick);
+      document.addEventListener('keydown', onEscPress);
     }
   };
 

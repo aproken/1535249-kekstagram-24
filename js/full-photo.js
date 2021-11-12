@@ -1,5 +1,4 @@
 // Этот модуль отвечает за отображение окна с полноразмерным изображением
-
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img');
 const likesCount = bigPicture.querySelector('.likes-count');

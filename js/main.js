@@ -1,17 +1,18 @@
-import {
-  createPhotoDescriptions
-} from './data.js';
+import { getData } from './api.js';
+import { showErrorMessage } from './notifications.js';
+
 import {
   renderThumbnailElements,
   reactThumbnailClick
 } from './thumbnails.js';
-import {
-  showImgUploadForm
-} from './form.js';
 
+import { setListenerUploadImg } from './upload.js';
 
-const photoDescriptions = createPhotoDescriptions();
+const onSuccess = (photos) => {
+  renderThumbnailElements(photos),
+  reactThumbnailClick(photos),
+  setListenerUploadImg();
+};
 
-renderThumbnailElements(photoDescriptions);
-reactThumbnailClick(photoDescriptions);
-showImgUploadForm();
+getData(onSuccess, showErrorMessage);
+
