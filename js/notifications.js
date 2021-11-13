@@ -8,6 +8,10 @@ const errorTemplate = document.querySelector('#error')
   .content
   .querySelector('.error');
 
+const loaderTemplate = document.querySelector('#messages')
+  .content
+  .querySelector('.img-upload__message--loading');
+
 // Отрисовывает сообщение, что отправка данных прошла успешно
 const showSuccessMessage = () => {
   const successButton = successTemplate.querySelector('.success__button');
@@ -70,8 +74,23 @@ const showErrorMessage = (errorText) => {
   });
 };
 
+// Функция отображения лоадера
+const showLoader = () => {
+  const fragment = document.createDocumentFragment();
+  const loaderElement = loaderTemplate.cloneNode(true);
+  fragment.appendChild(loaderElement);
+  document.body.append(fragment);
+  document.body.classList.add('modal-open');
+
+  // возвращаем функцию которая скроет лоадер
+  return () => {
+    document.body.classList.remove('modal-open');
+    loaderElement.remove();
+  };
+};
 
 export {
   showSuccessMessage,
-  showErrorMessage
+  showErrorMessage,
+  showLoader
 };

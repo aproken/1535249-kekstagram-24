@@ -1,3 +1,5 @@
+import { showLoader } from './notifications.js';
+
 const GET_DATA_URL = 'https://24.javascript.pages.academy/kekstagram/data';
 const SEND_DATA_URL = 'https://24.javascript.pages.academy/kekstagram';
 
@@ -5,7 +7,7 @@ const ERROR_MESSAGE = 'Не удалось получить изображени
 const ERROR_SUBMIT_MESSAGE = 'Не удалось отправить форму. Попробуйте ещё раз';
 
 const getData = (onSuccess, onFail) => {
-  // TODO показать экран загрузки изображения
+  const hideLoader = showLoader();
   fetch(GET_DATA_URL)
     .then((response) => response.json())
     .then((photos) => {
@@ -13,8 +15,8 @@ const getData = (onSuccess, onFail) => {
     })
     .catch(() => {
       onFail(ERROR_MESSAGE);
-    });
-
+    })
+    .finally( () => hideLoader() );
 };
 
 const sendData = (onSuccess, onFail, body) => {
