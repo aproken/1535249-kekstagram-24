@@ -6,7 +6,6 @@ const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const pictureCancel  = bigPicture.querySelector('#picture-cancel');
 
-
 // Функция-генератор DOM-элемента, соответствующего одной фотографии, и заполния его данными
 const createThumbnailElement = (template, element) => {
   const thumbnailElement = template.cloneNode(true);
@@ -22,22 +21,6 @@ const createThumbnailElement = (template, element) => {
   pictureLikes.textContent = element['likes'];
 
   return thumbnailElement;
-};
-
-// Функция отрисовки фото-миниатюр на страницу
-const renderThumbnailElements = (elements) => {
-  const template = document.querySelector('#picture')
-    .content
-    .querySelector('.picture');
-  const fragment = document.createDocumentFragment();
-
-  elements.forEach((item) => {
-    fragment.appendChild(createThumbnailElement(template, item));
-  });
-
-  pictures.appendChild(fragment);
-
-  return pictures;
 };
 
 let onEscPress = null;
@@ -63,9 +46,20 @@ onCloseClick = () => {
   document.removeEventListener('keydown', onEscPress);
 };
 
+// Функция отрисовки фото-миниатюр на страницу
+const renderThumbnailElements = (elements) => {
+  const template = document.querySelector('#picture')
+    .content
+    .querySelector('.picture');
+  const fragment = document.createDocumentFragment();
 
-// Функция обработки клика по миниатюре
-const reactThumbnailClick = (elements) => {
+  elements.forEach((item) => {
+    fragment.appendChild(createThumbnailElement(template, item));
+  });
+
+  pictures.appendChild(fragment);
+
+  // Функция обработки клика по миниатюре
   const onThumbnailClick = (evt) => {
     if (evt.target && evt.target.closest('.picture')) {
       const pictureId = evt.target.closest('.picture').dataset.pictureId;
@@ -78,10 +72,14 @@ const reactThumbnailClick = (elements) => {
   };
 
   pictures.addEventListener('click', onThumbnailClick);
+
+  return pictures;
 };
 
-export {
-  renderThumbnailElements,
-  reactThumbnailClick
+// Удаление всех отрисованных фото-миниатюр со страницы
+const removeThumbnailElements = () => {
+  document.querySelectorAll('.picture').forEach((element) => element.remove());
 };
+
+export { renderThumbnailElements, removeThumbnailElements };
 

@@ -10,11 +10,9 @@ const uploadFile = uploadForm.querySelector('#upload-file');
 const imgUploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const uploadCancel = uploadForm.querySelector('#upload-cancel');
 
-
 // Сбросить состояние формы
 const resetFileUploadForm = () => {
   uploadForm.reset();
-  // TODO: Нужно проверить, что больше ничего не нужно
 };
 
 // Показать модальное окно
