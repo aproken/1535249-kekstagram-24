@@ -5,16 +5,17 @@ import { sendData } from './api.js';
 import * as effect from './effect.js';
 import * as scale from './scale.js';
 
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+
 const uploadForm = document.querySelector('#upload-select-image');
 const uploadFile = uploadForm.querySelector('#upload-file');
+const imgUploadPreview = uploadForm.querySelector('.img-upload__preview img');
 const imgUploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const uploadCancel = uploadForm.querySelector('#upload-cancel');
-
 
 // Сбросить состояние формы
 const resetFileUploadForm = () => {
   uploadForm.reset();
-  // TODO: Нужно проверить, что больше ничего не нужно
 };
 
 // Показать модальное окно
@@ -64,10 +65,17 @@ const onSubmite = (evt) => {
   sendData(onSuccess, onFail, formData);
 };
 
-
 // Обработчик события выбора файла для загрузки
 const onChangeUploadImg = () => {
   openUploadForm();
+
+  const file = uploadFile.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
+
+  if (matches) {
+    imgUploadPreview.src = URL.createObjectURL(file);
+  }
 
   effect.init();
   validation.init();

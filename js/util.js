@@ -47,11 +47,60 @@ const getCounter = (array) => {
 // Функция удаления дублей из массива
 const getUniqueArray = (array) => Array.from(new Set(array));
 
+
+const createRandomElementFromArray = (array) => {
+  const previousValues = [];
+
+  return () => {
+    let currentValueIndex = getRandomNumber(0, array.length);
+    let currentValue = array[currentValueIndex];
+
+    if (previousValues.length >= array.length) {
+      return null;
+    }
+
+    while (previousValues.includes(currentValue)) {
+      currentValueIndex = getRandomNumber(0, array.length);
+      currentValue = array[currentValueIndex];
+    }
+
+    previousValues.push(currentValue);
+    return currentValue;
+  };
+};
+
+const createRandomElementsFromArray = (array, count) => {
+  const randomElements = [];
+  const getRandom = createRandomElementFromArray(array);
+
+  for (let item = 0; item < count; item++) {
+    randomElements.push(getRandom());
+  }
+  return randomElements;
+};
+
+// Функция перемешивания масива
+// взята из интернета и доработана
+// Источник - https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+const shuffle = (array) => {
+  const unsorted = array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((aItem, bItem) => aItem.sort - bItem.sort)
+    .map(({ value }) => value);
+  return unsorted;
+};
+
+// Функция получения N случайных элементов из масива
+const getNRandomElements = (array, count) => shuffle(array).slice(0, count);
+
 export {
   getRandomNumber,
   createRandomIdFromRange,
   checkStringLength,
   isEscapeKey,
   getCounter,
-  getUniqueArray
+  getUniqueArray,
+  getNRandomElements,
+  shuffle,
+  createRandomElementsFromArray
 };

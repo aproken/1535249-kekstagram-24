@@ -52,6 +52,8 @@ const imgUploadPreview = imgUploadForm.querySelector('.img-upload__preview img')
 const effectLevelValue = imgUploadForm.querySelector('.effect-level__value');
 const effectsList = imgUploadForm.querySelector('.effects__list');
 
+let currentEffectName = 'none';
+
 // Устанавливает для изображения необходимый класс
 const setPictureClass = (effectName) => {
   imgUploadPreview.className = Effects[effectName].className;
@@ -67,8 +69,8 @@ const setPictureEffect = (effectName) => {
 const onEffectListChange = (evt) => {
   if (evt.target.matches('input[type="radio"]')) {
     const selectedEffect = evt.target;
-    const effectName = selectedEffect.value;
-    const currentEffect = Effects[effectName];
+    currentEffectName = selectedEffect.value;
+    const currentEffect = Effects[currentEffectName];
 
     if (selectedEffect === defaultEffect) {
       hideSlider();
@@ -76,17 +78,15 @@ const onEffectListChange = (evt) => {
       showSlider(currentEffect['min'], currentEffect['max'], currentEffect['step']);
     }
 
-    setPictureClass(effectName);
-    setPictureEffect(effectName);
+    setPictureClass(currentEffectName);
+    setPictureEffect(currentEffectName);
   }
 };
 
+// Обработчик события выбора глубины эффекта
 const onEffectValueChange = () => {
-  const selectedEffect = effectsList.querySelector('input[type="radio"]:checked');
-  const effectName = selectedEffect.value;
-
-  setPictureClass(effectName);
-  setPictureEffect(effectName);
+  setPictureClass(currentEffectName);
+  setPictureEffect(currentEffectName);
 };
 
 // Иницирует модуль работы с эффектами

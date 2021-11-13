@@ -1,17 +1,26 @@
 import { isEscapeKey } from './util.js';
 
+const successTemplate = document.querySelector('#success')
+  .content
+  .querySelector('.success');
+
+const errorTemplate = document.querySelector('#error')
+  .content
+  .querySelector('.error');
+
+const loaderTemplate = document.querySelector('#messages')
+  .content
+  .querySelector('.img-upload__message--loading');
+
 // Отрисовывает сообщение, что отправка данных прошла успешно
 const showSuccessMessage = () => {
-  const template = document.querySelector('#success')
-    .content
-    .querySelector('.success');
-  const successButton = template.querySelector('.success__button');
+  const successButton = successTemplate.querySelector('.success__button');
   const fragment = document.createDocumentFragment();
 
-  const successMessage = template.cloneNode(true);
+  const successMessage = successTemplate.cloneNode(true);
   fragment.appendChild(successMessage);
-  document.querySelector('body').append(fragment);
-  document.querySelector('body').classList.add('modal-open');
+  document.body.append(fragment);
+  document.body.classList.add('modal-open');
 
   successButton.addEventListener('click', () => {
     successMessage.remove();
@@ -21,7 +30,7 @@ const showSuccessMessage = () => {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
       successMessage.remove();
-      document.querySelector('body').classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
     }
   });
 
@@ -35,18 +44,15 @@ const showSuccessMessage = () => {
 
 // Отрисовывает сообщение ошибки
 const showErrorMessage = (errorText) => {
-  const template = document.querySelector('#error')
-    .content
-    .querySelector('.error');
   const fragment = document.createDocumentFragment();
-  const errorMessageElement = template.cloneNode(true);
+  const errorMessageElement = errorTemplate.cloneNode(true);
   const errorMessage = errorMessageElement.querySelector('.errorMessage');
   errorMessage.textContent = errorText;
   fragment.appendChild(errorMessageElement);
-  document.querySelector('body').append(fragment);
-  document.querySelector('body').classList.add('modal-open');
+  document.body.append(fragment);
+  document.body.classList.add('modal-open');
 
-  const errorButton = template.querySelector('.error__button');
+  const errorButton = errorTemplate.querySelector('.error__button');
 
   errorButton.addEventListener('click', () => {
     errorMessageElement.remove();
@@ -56,20 +62,35 @@ const showErrorMessage = (errorText) => {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
       errorMessageElement.remove();
-      document.querySelector('body').classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
     }
   });
 
   document.addEventListener('click', (evt) => {
     if (evt.target.className !== 'error__inner') {
       errorMessageElement.remove();
-      document.querySelector('body').classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
     }
   });
 };
 
+// Функция отображения лоадера
+const showLoader = () => {
+  const fragment = document.createDocumentFragment();
+  const loaderElement = loaderTemplate.cloneNode(true);
+  fragment.appendChild(loaderElement);
+  document.body.append(fragment);
+  document.body.classList.add('modal-open');
+
+  // возвращаем функцию которая скроет лоадер
+  return () => {
+    document.body.classList.remove('modal-open');
+    loaderElement.remove();
+  };
+};
 
 export {
   showSuccessMessage,
-  showErrorMessage
+  showErrorMessage,
+  showLoader
 };

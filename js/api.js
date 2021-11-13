@@ -1,17 +1,27 @@
+import { showLoader } from './notifications.js';
+
+const GET_DATA_URL = 'https://24.javascript.pages.academy/kekstagram/data';
+const SEND_DATA_URL = 'https://24.javascript.pages.academy/kekstagram';
+
+const ERROR_MESSAGE = 'Не удалось получить изображения';
+const ERROR_SUBMIT_MESSAGE = 'Не удалось отправить форму. Попробуйте ещё раз';
+
 const getData = (onSuccess, onFail) => {
-  fetch('https://24.javascript.pages.academy/kekstagram/data')
+  const hideLoader = showLoader();
+  fetch(GET_DATA_URL)
     .then((response) => response.json())
     .then((photos) => {
       onSuccess(photos);
     })
     .catch(() => {
-      onFail('Не удалось получить изображения');
-    });
+      onFail(ERROR_MESSAGE);
+    })
+    .finally( () => hideLoader() );
 };
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://24.javascript.pages.academy/kekstagram',
+    SEND_DATA_URL,
     {
       method: 'POST',
       body: body,
@@ -21,11 +31,11 @@ const sendData = (onSuccess, onFail, body) => {
       if (response.ok) {
         onSuccess();
       } else {
-        onFail('Не удалось отправить форму. Попробуйте ещё раз');
+        onFail(ERROR_SUBMIT_MESSAGE);
       }
     })
     .catch(() => {
-      onFail('Не удалось отправить форму. Попробуйте ещё раз');
+      onFail(ERROR_SUBMIT_MESSAGE);
     });
 };
 
