@@ -1,14 +1,16 @@
 import { showLoader } from './notifications.js';
 
-const GET_DATA_URL = 'https://24.javascript.pages.academy/kekstagram/data';
-const SEND_DATA_URL = 'https://24.javascript.pages.academy/kekstagram';
+const Url = {
+  GET: 'https://24.javascript.pages.academy/kekstagram/data',
+  POST: 'https://24.javascript.pages.academy/kekstagram',
+};
 
 const ERROR_MESSAGE = 'Не удалось получить изображения';
 const ERROR_SUBMIT_MESSAGE = 'Не удалось отправить форму. Попробуйте ещё раз';
 
 const getData = (onSuccess, onFail) => {
   const hideLoader = showLoader();
-  fetch(GET_DATA_URL)
+  fetch(Url.GET)
     .then((response) => response.json())
     .then((photos) => {
       onSuccess(photos);
@@ -21,7 +23,7 @@ const getData = (onSuccess, onFail) => {
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    SEND_DATA_URL,
+    Url.POST,
     {
       method: 'POST',
       body: body,

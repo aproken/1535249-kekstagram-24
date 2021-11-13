@@ -26,13 +26,7 @@ const showImgFilters = () => {
 
 // Функция сортировки фотографий по уровню обсуждаемости
 const sortPhotosCommentsLength = (photos) => {
-  const compareFn = (aItem, bItem) => {
-    const aComments = aItem.comments.length;
-    const bComments = bItem.comments.length;
-    if (aComments > bComments) {return -1;}
-    if (aComments < bComments) {return 1;}
-    return 0;
-  };
+  const compareFn = (aItem, bItem) => bItem.comments.length - aItem.comments.length;
   return photos.sort(compareFn);
 };
 
