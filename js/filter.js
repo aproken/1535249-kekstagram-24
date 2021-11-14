@@ -17,7 +17,7 @@ const imgFilters = document.querySelector('.img-filters');
 const imgFiltersForm = imgFilters.querySelector('.img-filters__form');
 const filterDefault =  imgFiltersForm.querySelector('#filter-default');
 const filterRandom =  imgFiltersForm.querySelector('#filter-random');
-const filterDscussed =  imgFiltersForm.querySelector('#filter-discussed');
+const filterDiscussed =  imgFiltersForm.querySelector('#filter-discussed');
 
 // Показать блок фильтров для загруженных изображений
 const showImgFilters = () => {
@@ -44,7 +44,7 @@ const init = (photos) => {
     const sortedPhotos = sortPhotosCommentsLength(photos);
     removeThumbnailElements();
     renderThumbnailElements(sortedPhotos);
-    toggleActiveFilter(filterDscussed);
+    toggleActiveFilter(filterDiscussed);
   };
 
   // Обработчик события выбора фильтра "Случайные"
@@ -63,7 +63,7 @@ const init = (photos) => {
 
   filterDefault.addEventListener('click', debounce(onFilterDefaultClick, RERENDER_DELAY));
   filterRandom.addEventListener('click',  debounce(onFilterRandomClick, RERENDER_DELAY));
-  filterDscussed.addEventListener('click',  debounce(onFilterDscussedClick, RERENDER_DELAY));
+  filterDiscussed.addEventListener('click',  debounce(onFilterDscussedClick, RERENDER_DELAY));
 };
 
 export { showImgFilters, init};
