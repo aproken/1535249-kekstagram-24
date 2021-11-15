@@ -101,10 +101,10 @@ const init = () => {
 };
 
 // Выключает модуль работы с эффектами
-const off = () => {
+const deactivate = () => {
   effectsList.removeEventListener('change', onEffectListChange);
   effectLevelValue.removeEventListener('change', onEffectValueChange);
   hideSlider();
 };
 
-export { init, off };
+export { init, deactivate };

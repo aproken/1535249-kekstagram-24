@@ -31,9 +31,6 @@ const createRandomIdFromRange = (rangeFrom, rangeTo) => {
   };
 };
 
-//Функция проверки длины комментария
-const checkStringLength = ( str, maxlength ) => ( str.length <= maxlength );
-
 // Функция-проверка нажатой клавиши
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -46,38 +43,6 @@ const getCounter = (array) => {
 
 // Функция удаления дублей из массива
 const getUniqueArray = (array) => Array.from(new Set(array));
-
-
-const createRandomElementFromArray = (array) => {
-  const previousValues = [];
-
-  return () => {
-    let currentValueIndex = getRandomNumber(0, array.length);
-    let currentValue = array[currentValueIndex];
-
-    if (previousValues.length >= array.length) {
-      return null;
-    }
-
-    while (previousValues.includes(currentValue)) {
-      currentValueIndex = getRandomNumber(0, array.length);
-      currentValue = array[currentValueIndex];
-    }
-
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-};
-
-const createRandomElementsFromArray = (array, count) => {
-  const randomElements = [];
-  const getRandom = createRandomElementFromArray(array);
-
-  for (let item = 0; item < count; item++) {
-    randomElements.push(getRandom());
-  }
-  return randomElements;
-};
 
 // Функция перемешивания масива
 // взята из интернета и доработана
@@ -96,11 +61,9 @@ const getNRandomElements = (array, count) => shuffle(array).slice(0, count);
 export {
   getRandomNumber,
   createRandomIdFromRange,
-  checkStringLength,
   isEscapeKey,
   getCounter,
   getUniqueArray,
   getNRandomElements,
-  shuffle,
-  createRandomElementsFromArray
+  shuffle
 };

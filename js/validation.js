@@ -3,7 +3,7 @@ import {
   getUniqueArray
 } from './util.js';
 
-const Heshteg = {
+const HashTag = {
   MIN_SIZE: 2,
   MAX_SIZE: 20,
   QUANTITY: 5,
@@ -19,11 +19,11 @@ const checkHashtagItem = (tag) => {
   const errorMessages = [];
   const valueLength = tag.length;
 
-  if (valueLength < Heshteg.MIN_SIZE) {
-    errorMessages.push(`Тэг должен содержать не менее ${ Heshteg.MIN_SIZE } симв.`);
+  if (valueLength < HashTag.MIN_SIZE) {
+    errorMessages.push(`Тэг должен содержать не менее ${ HashTag.MIN_SIZE } симв.`);
   }
-  if (valueLength > Heshteg.MAX_SIZE) {
-    errorMessages.push(`Тэг должен содержать не более ${ Heshteg.MAX_SIZE } симв.`);
+  if (valueLength > HashTag.MAX_SIZE) {
+    errorMessages.push(`Тэг должен содержать не более ${ HashTag.MAX_SIZE } симв.`);
   }
 
   if (!tag.match(/^#[0-9a-zа-яё]+$/)) {
@@ -41,8 +41,8 @@ const checkHashtags = (str) => {
 
   const errorMessages = rawKeyword.map(checkHashtagItem).flat();
 
-  if (rawKeyword.length > Heshteg.QUANTITY) {
-    errorMessages.push(`Тэгов не может быть больше ${Heshteg.QUANTITY}`);
+  if (rawKeyword.length > HashTag.QUANTITY) {
+    errorMessages.push(`Тэгов не может быть больше ${HashTag.QUANTITY}`);
   }
 
   const countItems = getCounter(rawKeyword);
@@ -77,11 +77,11 @@ const init = () => {
   imgUploadForm.addEventListener('input', validateForm);
 };
 
-const off = () => {
+const deactivate = () => {
   imgUploadForm.removeEventListener('input', validateForm);
 };
 
 export {
   init,
-  off
+  deactivate
 };

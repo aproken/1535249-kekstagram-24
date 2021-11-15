@@ -48,9 +48,9 @@ const init = () => {
   scale.addEventListener('click', editImgScale);
 };
 
-const off = () => {
+const deactivate = () => {
   scale.removeEventListener('click', editImgScale);
   imgUploadPreview.style.transform = '';
 };
 
-export { init, off };
+export { init, deactivate };

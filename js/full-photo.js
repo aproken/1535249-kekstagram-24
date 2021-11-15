@@ -1,6 +1,6 @@
 // Этот модуль отвечает за отображение окна с полноразмерным изображением
 const bigPicture = document.querySelector('.big-picture');
-const bigPictureImg = bigPicture.querySelector('.big-picture__img');
+const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
 const commentsCount = bigPicture.querySelector('.comments-count');
 const socialCaption = bigPicture.querySelector('.social__caption');
@@ -64,7 +64,7 @@ const renderUserComments = (comments) => {
 
 // Функция показа окна с полноразмерным изображением
 const showBigPictire = (element) => {
-  bigPictureImg.children[0].src = element['url'];
+  bigPictureImg.src = element['url'];
   likesCount.textContent = element['likes'];
   commentsCount.textContent = element['comments'].length;
   socialCaption.textContent = element['description'];

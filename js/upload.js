@@ -26,9 +26,9 @@ const openUploadForm = () => {
 
 // Скрыть модальное окно
 const closeModalForm = () => {
-  effect.off();
-  validation.off();
-  scale.off();
+  effect.deactivate();
+  validation.deactivate();
+  scale.deactivate();
   imgUploadOverlay.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
 };
@@ -54,9 +54,14 @@ const onCloseClick = () => {
 const onEscPress = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeModalForm();
+
+    if (!evt.target.closest('.img-upload__text')) {
+      resetFileUploadForm();
+      closeModalForm();
+    }
   }
 };
+
 
 // Обработчик отправки формы
 const onSubmite = (evt) => {
