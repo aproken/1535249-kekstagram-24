@@ -45,30 +45,30 @@ const showSuccessMessage = () => {
 // Отрисовывает сообщение ошибки
 const showErrorMessage = (errorText) => {
   const fragment = document.createDocumentFragment();
-  const errorMessageElement = errorTemplate.cloneNode(true);
-  const errorMessage = errorMessageElement.querySelector('.errorMessage');
+  const errorMessageTemplate = errorTemplate.cloneNode(true);
+  const errorMessage = errorMessageTemplate.querySelector('.errorMessage');
   errorMessage.textContent = errorText;
-  fragment.appendChild(errorMessageElement);
+  fragment.appendChild(errorMessageTemplate);
   document.body.append(fragment);
   document.body.classList.add('modal-open');
 
   const errorButton = errorTemplate.querySelector('.error__button');
 
   errorButton.addEventListener('click', () => {
-    errorMessageElement.remove();
+    errorMessageTemplate.remove();
   });
 
   document.addEventListener('keydown', (evt) => {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
-      errorMessageElement.remove();
+      errorMessageTemplate.remove();
       document.body.classList.remove('modal-open');
     }
   });
 
   document.addEventListener('click', (evt) => {
     if (evt.target.className !== 'error__inner') {
-      errorMessageElement.remove();
+      errorMessageTemplate.remove();
       document.body.classList.remove('modal-open');
     }
   });
@@ -77,15 +77,15 @@ const showErrorMessage = (errorText) => {
 // Функция отображения лоадера
 const showLoader = () => {
   const fragment = document.createDocumentFragment();
-  const loaderElement = loaderTemplate.cloneNode(true);
-  fragment.appendChild(loaderElement);
+  const loader = loaderTemplate.cloneNode(true);
+  fragment.appendChild(loader);
   document.body.append(fragment);
   document.body.classList.add('modal-open');
 
   // возвращаем функцию которая скроет лоадер
   return () => {
     document.body.classList.remove('modal-open');
-    loaderElement.remove();
+    loader.remove();
   };
 };
 

@@ -8,19 +8,19 @@ const pictureCancel  = bigPicture.querySelector('#picture-cancel');
 
 // Функция-генератор DOM-элемента, соответствующего одной фотографии, и заполния его данными
 const createThumbnailElement = (template, element) => {
-  const thumbnailElement = template.cloneNode(true);
-  thumbnailElement.dataset.pictureId = element['id'];
+  const thumbnail = template.cloneNode(true);
+  thumbnail.dataset.pictureId = element['id'];
 
-  const pictureImg = thumbnailElement.querySelector('.picture__img');
+  const pictureImg = thumbnail.querySelector('.picture__img');
   pictureImg.src = element['url'];
 
-  const pictureComments = thumbnailElement.querySelector('.picture__comments');
+  const pictureComments = thumbnail.querySelector('.picture__comments');
   pictureComments.textContent = element['comments'].length;
 
-  const pictureLikes = thumbnailElement.querySelector('.picture__likes');
+  const pictureLikes = thumbnail.querySelector('.picture__likes');
   pictureLikes.textContent = element['likes'];
 
-  return thumbnailElement;
+  return thumbnail;
 };
 
 let onEscPress = null;

@@ -15,8 +15,7 @@ const showSlider = (minValue, maxValue, step) => {
   };
 
   const updateHandler = (value, handle, unencoded) => {
-    const level = unencoded[handle];
-    effectLevelValue.value = level;
+    effectLevelValue.value = unencoded[handle];
 
     // Поднимает событие для синхронизации с изменениями эффектов
     effectLevelValue.dispatchEvent(new Event('change'));

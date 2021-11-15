@@ -40,7 +40,7 @@ const init = (photos) => {
   renderThumbnailElements(photos);
 
   // Обработчик события выбора фильтра "Обсуждаемые"
-  const onFilterDscussedClick = () => {
+  const onFilterDiscussedClick = () => {
     const sortedPhotos = sortPhotosCommentsLength(photos);
     removeThumbnailElements();
     renderThumbnailElements(sortedPhotos);
@@ -63,7 +63,7 @@ const init = (photos) => {
 
   filterDefault.addEventListener('click', debounce(onFilterDefaultClick, RERENDER_DELAY));
   filterRandom.addEventListener('click',  debounce(onFilterRandomClick, RERENDER_DELAY));
-  filterDiscussed.addEventListener('click',  debounce(onFilterDscussedClick, RERENDER_DELAY));
+  filterDiscussed.addEventListener('click',  debounce(onFilterDiscussedClick, RERENDER_DELAY));
 };
 
 export { showImgFilters, init};

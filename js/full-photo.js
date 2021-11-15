@@ -1,4 +1,9 @@
 // Этот модуль отвечает за отображение окна с полноразмерным изображением
+const UserAvatar = {
+  width: '35',
+  height: '35',
+};
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
@@ -17,8 +22,8 @@ const renderCommentsItem = (comment) => {
   userAvatar.classList.add('social__picture');
   userAvatar.src = comment['avatar'];
   userAvatar.alt = comment['name'];
-  userAvatar.width = '35';
-  userAvatar.height = '35';
+  userAvatar.width = UserAvatar['width'];
+  userAvatar.height = UserAvatar['height'];
 
   const userMassage = document.createElement('p');
   userMassage.classList.add('social__text');

@@ -11,26 +11,6 @@ const getRandomNumber = (rangeFrom, rangeTo) => {
   return Math.round(randNumber);
 };
 
-// Функция-генератор для получения уникальных идентификаторов из указанного диапазона
-const createRandomIdFromRange = (rangeFrom, rangeTo) => {
-  const previousValues = [];
-
-  return () => {
-    let currentValue = getRandomNumber(rangeFrom, rangeTo);
-
-    if (previousValues.length >= (rangeTo - rangeFrom + 1)) {
-      return null;
-    }
-
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomNumber(rangeFrom, rangeTo);
-    }
-
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-};
-
 // Функция-проверка нажатой клавиши
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -60,7 +40,6 @@ const getNRandomElements = (array, count) => shuffle(array).slice(0, count);
 
 export {
   getRandomNumber,
-  createRandomIdFromRange,
   isEscapeKey,
   getCounter,
   getUniqueArray,
